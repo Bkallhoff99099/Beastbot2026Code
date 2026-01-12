@@ -156,6 +156,15 @@ public class Drivetrain extends SubsystemBase {
     swerveOdometry.update(getGyroYaw(), getModulePositions());
   }
 
+  public void setXMode(){
+    swerveMods[0].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)), false);
+    swerveMods[1].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)), false);
+    swerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)), false);
+    swerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)), false);
+  }
+
+  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
