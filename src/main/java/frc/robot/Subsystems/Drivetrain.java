@@ -6,6 +6,8 @@ package frc.robot.Subsystems;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.studica.frc.AHRS;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -14,6 +16,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,14 +26,14 @@ public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public SwerveDriveOdometry swerveOdometry;
   public SwerveModule[] swerveMods;
-  public AHRS gyro;
+  public ADIS16470_IMU gyro;
 
   private final ReentrantLock swerveModLock = new ReentrantLock();
 
 
   public Drivetrain() {
-    gyro = new AHRS();
-    gyro.setYaw(0);
+    gyro = new ADIS16470_IMU();
+    gyro.reset();
 
     swerveMods = new SwerveModule[]{
       new SwerveModule(1, 2, 1, null),
@@ -121,7 +124,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setHeading(Rotation2d heading){
-    swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), heading);
+    swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), new Pose2d(getPose().getTranslation(), heading));
   }
 
   public Command zeroHeading(){
@@ -132,7 +135,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public Rotation2d getGyroYaw(){
-    return Rotation2d.fromDegrees(gyro.getYaw().getValueAsDouble());
+    return Rotation2d.fromDegrees(gyro.getAngle());
   }
 
   public Command resetModulesToAbsolute(){
