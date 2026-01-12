@@ -1,0 +1,46 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot;
+
+import com.ctre.phoenix6.swerve.SwerveModuleConstants;
+
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+
+/** Add your docs here. */
+public final class Constants {
+    public static final class SwerveConstants{
+        public static final double driveKS = 0.32;
+        public static final double driveKV = 1.51;
+        public static final double driveKA = 0.27;
+
+        public static final double driveKP = 0.12;
+        public static final double driveKI = 0.0;
+        public static final double driveKD = 0.0;
+        public static final double driveKFF = 0.0;
+
+        public static final double turnKP = 0.12;
+        public static final double turnKI = 0.0;
+        public static final double turnKD = 0.0;
+
+
+        public static double driveGearRatio = 6.03;
+        public static double turnGearRatio = 26.09;
+        public static double wheelDiameter = 4.0;
+        public static double wheelCircumference = 2 * Math.PI * (wheelDiameter / 2);
+
+
+        public static final double LRWheelBase = 24.75;
+        public static final double FBWheelBase = 19.75;
+        public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
+            new Translation2d(LRWheelBase / 2.0, FBWheelBase / 2.0),
+            new Translation2d(LRWheelBase / 2.0, -FBWheelBase / 2.0),
+            new Translation2d(-LRWheelBase / 2.0, FBWheelBase / 2.0),
+            new Translation2d(-LRWheelBase / 2.0, -FBWheelBase / 2.0)
+        );
+    }
+
+}
