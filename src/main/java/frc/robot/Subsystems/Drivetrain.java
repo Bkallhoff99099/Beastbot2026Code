@@ -36,10 +36,10 @@ public class Drivetrain extends SubsystemBase {
     gyro.reset();
 
     swerveMods = new SwerveModule[]{
-      new SwerveModule(1, 2, 1, null),
-      new SwerveModule(3, 4, 2, null),
-      new SwerveModule(5, 6, 3, null),
-      new SwerveModule(7, 8, 4, null)
+      new SwerveModule(SwerveConstants.frontLeftDriveID, SwerveConstants.frontLeftTurnID, SwerveConstants.frontLeftCancoderID, null),
+      new SwerveModule(SwerveConstants.frontRightDriveID, SwerveConstants.frontRightTurnID, SwerveConstants.frontRightCancoderID, null),
+      new SwerveModule(SwerveConstants.backLeftDriveID, SwerveConstants.backLeftTurnID, SwerveConstants.backLeftCancoderID, null),
+      new SwerveModule(SwerveConstants.backRightDriveID, SwerveConstants.backRightTurnID, SwerveConstants.backRightCancoderID, null)
     };
 
     swerveOdometry = new SwerveDriveOdometry(SwerveConstants.swerveKinematics, getGyroYaw(), getModulePositions());

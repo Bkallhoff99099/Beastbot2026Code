@@ -41,6 +41,22 @@ public final class Constants {
             new Translation2d(-LRWheelBase / 2.0, FBWheelBase / 2.0),
             new Translation2d(-LRWheelBase / 2.0, -FBWheelBase / 2.0)
         );
+
+        public static final int frontLeftDriveID = 1;
+        public static final int backLeftDriveID = 3;
+        public static final int backRightDriveID = 5;
+        public static final int frontRightDriveID = 7;
+
+        public static final int frontLeftTurnID = 2;
+        public static final int backLeftTurnID = 4;
+        public static final int backRightTurnID = 6;
+        public static final int frontRightTurnID = 8;
+
+        public static final int frontLeftCancoderID = 9;
+        public static final int backLeftCancoderID = 10;
+        public static final int backRightCancoderID = 11;
+        public static final int frontRightCancoderID = 12;
+
     }
 
 }
