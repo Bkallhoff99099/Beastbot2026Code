@@ -59,4 +59,23 @@ public final class Constants {
 
     }
 
+    public static class PIDConstants{
+        public static final double intakeInSetpoint = Math.toRadians(90);
+        public static final double intakeOutSetpoint = Math.toRadians(0);
+    }
+
+    public static class CANIDs{
+        public static final int intakeLeft = 13;
+        public static final int intakeRight = 14;
+        public static final int intakeExtender = 15;
+        public static final int indexerLeft = 16;
+        public static final int indexerRight = 17;
+        public static final int towerLeft = 18;
+        public static final int towerRight = 19;
+        public static final int shooterLeft = 20;
+        public static final int shooterRight = 21;
+        public static final int climbLeft = 22;
+        public static final int climbRight = 23;
+    }
+
 }

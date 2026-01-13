@@ -13,11 +13,12 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CANIDs;
 
 public class BallShooter extends SubsystemBase {
   /** Creates a new BallShooter. */
-  private SparkMax left = new SparkMax(17, MotorType.kBrushless);
-  private SparkMax right = new SparkMax(18, MotorType.kBrushless);
+  private SparkMax left = new SparkMax(CANIDs.shooterLeft, MotorType.kBrushless);
+  private SparkMax right = new SparkMax(CANIDs.shooterRight, MotorType.kBrushless);
 
   public BallShooter() {}
 

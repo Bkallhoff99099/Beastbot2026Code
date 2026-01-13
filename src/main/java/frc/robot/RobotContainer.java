@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.TeleSwerve;
 import frc.robot.Subsystems.BallShooter;
 import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Intake;
 
 public class RobotContainer {
 private final XboxController driveController = new XboxController(0);
@@ -27,6 +28,7 @@ private final int rotationAxis = XboxController.Axis.kRightX.value;
 
 private final Drivetrain drivetrain = new Drivetrain();
 private final BallShooter shooter = new BallShooter();
+private final Intake intake = new Intake();
 
 
 
@@ -45,7 +47,7 @@ private final BallShooter shooter = new BallShooter();
     );
 
     shooter.setDefaultCommand(
-      new RunCommand(()->shooter.spin(30), shooter)
+      new RunCommand(()->shooter.spin(0.3), shooter)
     );
   }
 
@@ -56,6 +58,8 @@ private final BallShooter shooter = new BallShooter();
         new RunCommand(()->drivetrain.setXMode())
       )
     );
+
+    new Trigger(()->driveController.getLeftTriggerAxis() > 0.1).whileTrue(intake.spin(()->driveController.getLeftTriggerAxis()));
   
   }
 
