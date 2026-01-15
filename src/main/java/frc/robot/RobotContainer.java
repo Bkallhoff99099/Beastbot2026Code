@@ -63,8 +63,8 @@ private final Intake intake = new Intake();
 
     new Trigger(()->driveController.getAButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[0].runMotor(2), drivetrain));
     new Trigger(()->driveController.getBButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[1].runMotor(4), drivetrain));
-    new Trigger(()->driveController.getYButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[2].runMotor(6), drivetrain));
-    new Trigger(()->driveController.getXButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[0].runMotor(8), drivetrain));
+    new Trigger(()->driveController.getYButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[2].runMotor(8), drivetrain));
+    new Trigger(()->driveController.getXButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[3].runMotor(6), drivetrain));
     new Trigger(()->driveController.getLeftBumperButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[0].runMotor(1), drivetrain));
     new Trigger(()->driveController.getRightBumperButton()).onTrue(new RunCommand(()->drivetrain.swerveMods[1].runMotor(3), drivetrain));
   }

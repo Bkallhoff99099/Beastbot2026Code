@@ -48,7 +48,8 @@ public class SwerveModule extends SubsystemBase {
 
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop){
     desiredState.optimize(getState().angle);
-    turnMotor.setControl(anglePosition.withPosition(desiredState.angle.getRotations()));
+    PositionVoltage request = anglePosition.withPosition(desiredState.angle.getRotations());
+    turnMotor.setControl(request);
     setSpeed(desiredState, isOpenLoop);
   }
 

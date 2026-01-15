@@ -72,6 +72,27 @@ public class Drivetrain extends SubsystemBase {
       swerveModLock.unlock();
   }
 
+  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean isOpenLoop){
+    SwerveModuleState[] swerveModuleStates = 
+      SwerveConstants.swerveKinematics.toSwerveModuleStates(
+        new ChassisSpeeds(
+          ySpeed,
+          xSpeed,
+          rot
+        )
+      );
+
+      SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, 4.5);
+
+      swerveModLock.lock();
+      int i = 0;
+      for(SwerveModule mod : swerveMods){
+        mod.setDesiredState(swerveModuleStates[i], isOpenLoop);
+        i++;
+      }
+      swerveModLock.unlock();
+  }
+
   public void setModuleStates(SwerveModuleState[] desiredStates){
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, 4.5);
     int i = 0;
@@ -170,7 +191,7 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    swerveOdometry.update(getGyroYaw(), getModulePositions());
+    updateSwerveOdom();
 
   
   }

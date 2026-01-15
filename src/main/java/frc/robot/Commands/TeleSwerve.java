@@ -20,6 +20,7 @@ public class TeleSwerve extends Command {
   private DoubleSupplier strafeSup;
   private DoubleSupplier rotSup;
   private Boolean robotCentricSup;
+  private double slowModeSpeed = 0.25;
 
   public TeleSwerve(Drivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotSup, Boolean robotCentricSup) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -44,8 +45,9 @@ public class TeleSwerve extends Command {
     double rotationVal = MathUtil.applyDeadband(rotSup.getAsDouble(), 0.1);
 
     swerveBase.drive(
-      new Translation2d(translationVal, strafeVal).times(4.5),
-       rotationVal * 4,
+      strafeVal * slowModeSpeed,
+      translationVal * slowModeSpeed,
+       rotationVal * slowModeSpeed * 4, //was times 4
        !robotCentricSup,
        true);
   }
