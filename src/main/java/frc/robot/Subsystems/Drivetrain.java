@@ -36,10 +36,10 @@ public class Drivetrain extends SubsystemBase {
     gyro.reset();
 
     swerveMods = new SwerveModule[]{
-      new SwerveModule(SwerveConstants.frontLeftDriveID, SwerveConstants.frontLeftTurnID, SwerveConstants.frontLeftCancoderID, null),
-      new SwerveModule(SwerveConstants.backLeftDriveID, SwerveConstants.backLeftTurnID, SwerveConstants.backLeftCancoderID, null),
-      new SwerveModule(SwerveConstants.frontRightDriveID, SwerveConstants.frontRightTurnID, SwerveConstants.frontRightCancoderID, null),
-      new SwerveModule(SwerveConstants.backRightDriveID, SwerveConstants.backRightTurnID, SwerveConstants.backRightCancoderID, null)
+      new SwerveModule(SwerveConstants.frontLeftDriveID, SwerveConstants.frontLeftTurnID, SwerveConstants.frontLeftCancoderID, new Rotation2d()),
+      new SwerveModule(SwerveConstants.backLeftDriveID, SwerveConstants.backLeftTurnID, SwerveConstants.backLeftCancoderID, new Rotation2d()),
+      new SwerveModule(SwerveConstants.frontRightDriveID, SwerveConstants.frontRightTurnID, SwerveConstants.frontRightCancoderID, new Rotation2d()),
+      new SwerveModule(SwerveConstants.backRightDriveID, SwerveConstants.backRightTurnID, SwerveConstants.backRightCancoderID, new Rotation2d())
     };
 
     swerveOdometry = new SwerveDriveOdometry(SwerveConstants.swerveKinematics, getGyroYaw(), getModulePositions());
@@ -88,6 +88,7 @@ public class Drivetrain extends SubsystemBase {
       int i = 0;
       for(SwerveModule mod : swerveMods){
         mod.setDesiredState(swerveModuleStates[i], isOpenLoop);
+
         i++;
       }
       swerveModLock.unlock();
