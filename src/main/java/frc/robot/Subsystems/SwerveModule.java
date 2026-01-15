@@ -87,6 +87,15 @@ public class SwerveModule extends SubsystemBase {
     );
   }
 
+  public void runMotor(int ID){
+    if(ID == driveMotor.getDeviceID()){
+      driveMotor.set(0.3);
+    }
+    if(ID == turnMotor.getDeviceID()){
+      turnMotor.set(0.3);
+    }
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -37,8 +37,8 @@ public class Drivetrain extends SubsystemBase {
 
     swerveMods = new SwerveModule[]{
       new SwerveModule(SwerveConstants.frontLeftDriveID, SwerveConstants.frontLeftTurnID, SwerveConstants.frontLeftCancoderID, null),
-      new SwerveModule(SwerveConstants.frontRightDriveID, SwerveConstants.frontRightTurnID, SwerveConstants.frontRightCancoderID, null),
       new SwerveModule(SwerveConstants.backLeftDriveID, SwerveConstants.backLeftTurnID, SwerveConstants.backLeftCancoderID, null),
+      new SwerveModule(SwerveConstants.frontRightDriveID, SwerveConstants.frontRightTurnID, SwerveConstants.frontRightCancoderID, null),
       new SwerveModule(SwerveConstants.backRightDriveID, SwerveConstants.backRightTurnID, SwerveConstants.backRightCancoderID, null)
     };
 
@@ -162,6 +162,8 @@ public class Drivetrain extends SubsystemBase {
     swerveMods[2].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)), false);
     swerveMods[3].setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)), false);
   }
+
+ 
 
   
 

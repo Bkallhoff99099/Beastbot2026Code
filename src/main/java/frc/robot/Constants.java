@@ -36,10 +36,10 @@ public final class Constants {
         public static final double LRWheelBase = 24.75;
         public static final double FBWheelBase = 19.75;
         public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
-            new Translation2d(LRWheelBase / 2.0, FBWheelBase / 2.0),
-            new Translation2d(LRWheelBase / 2.0, -FBWheelBase / 2.0),
-            new Translation2d(-LRWheelBase / 2.0, FBWheelBase / 2.0),
-            new Translation2d(-LRWheelBase / 2.0, -FBWheelBase / 2.0)
+            new Translation2d(LRWheelBase / 2.0, FBWheelBase / 2.0), // left front
+            new Translation2d(LRWheelBase / 2.0, -FBWheelBase / 2.0), // left back
+            new Translation2d(-LRWheelBase / 2.0, FBWheelBase / 2.0), // right front
+            new Translation2d(-LRWheelBase / 2.0, -FBWheelBase / 2.0) // right back
         );
 
         public static final int frontLeftDriveID = 1;
