@@ -7,7 +7,9 @@ package frc.robot.Subsystems;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.studica.frc.AHRS;
+import com.studica.frc.AHRS.NavXComType;
 
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -16,7 +18,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,14 +28,17 @@ public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public SwerveDriveOdometry swerveOdometry;
   public SwerveModule[] swerveMods;
-  public ADIS16470_IMU gyro;
+  public AHRS gyro;
+  public SwerveDrivePoseEstimator poseEstimator;
 
   private final ReentrantLock swerveModLock = new ReentrantLock();
 
 
   public Drivetrain() {
-    gyro = new ADIS16470_IMU();
+    gyro = new AHRS(NavXComType.kMXP_SPI);
     gyro.reset();
+
+   
 
     swerveMods = new SwerveModule[]{
       new SwerveModule(SwerveConstants.frontLeftDriveID, SwerveConstants.frontLeftTurnID, SwerveConstants.frontLeftCancoderID, new Rotation2d()),
@@ -43,6 +48,7 @@ public class Drivetrain extends SubsystemBase {
     };
 
     swerveOdometry = new SwerveDriveOdometry(SwerveConstants.swerveKinematics, getGyroYaw(), getModulePositions());
+    poseEstimator = new SwerveDrivePoseEstimator(SwerveConstants.swerveKinematics, getGyroYaw(), getModulePositions(), getPose());
 
   }
 
@@ -193,6 +199,7 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateSwerveOdom();
+    poseEstimator.update(getGyroYaw(), getModulePositions());
 
   
   }

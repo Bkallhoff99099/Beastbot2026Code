@@ -78,4 +78,35 @@ public final class Constants {
         public static final int climbRight = 23;
     }
 
+    public static class VisionConstants{
+        public static final String frontLimelightName = "frontLimelight";
+        public static final String backLimelightName = "backLimelight";
+
+        //the AprilTag IDs used for autoAim
+        public static int[] aimingAprilIDs = {
+            9, 10, 11, 8, 27, 26, 25, 24 
+        };
+        //all AprilTag IDs
+        public static int[] defaultAprilIDs = {
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32
+        };
+
+        public static double[] frontLimelightConfig = {
+            0.0, //forward offset from navX
+            0.0, //side offet from navX
+            0.0, //height offset from navX
+            0.0, //roll
+            0.0, //pitch
+            0.0 //yaw
+        };
+        public static double[] backLimelightConfig = {
+            0.0, //forward offset from navX
+            0.0, //side offet from navX
+            0.0, //height offset from navX
+            0.0, //roll
+            0.0, //pitch
+            0.0 //yaw
+        };
+    }
+
 }
