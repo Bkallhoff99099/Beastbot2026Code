@@ -34,13 +34,13 @@ public class SwerveModule extends SubsystemBase {
   public SwerveModule(int driveCAN, int turnCAN, int canCoderID, Rotation2d angleOffset) {
 
     angleEncoder = new CANcoder(canCoderID);
-    angleEncoder.getConfigurator().apply(CTREConfigs.swerveCANcoderConfig);
+    angleEncoder.getConfigurator().apply(CTREConfigs.getCANcoderConfig());
 
     turnMotor = new TalonFX(turnCAN);
-    turnMotor.getConfigurator().apply(CTREConfigs.swerveAngleFXConfig);
+    turnMotor.getConfigurator().apply(CTREConfigs.getTurnConfig());
 
     driveMotor = new TalonFX(driveCAN);
-    driveMotor.getConfigurator().apply(CTREConfigs.swerveDriveFXConfig);
+    driveMotor.getConfigurator().apply(CTREConfigs.getDriveConfig());
     driveMotor.getConfigurator().setPosition(0.0);
 
     this.angleOffset = angleOffset;

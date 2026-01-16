@@ -14,25 +14,15 @@ import frc.robot.Constants.SwerveConstants;
 
 /** Add your docs here. */
 public final class CTREConfigs {
-    public static TalonFXConfiguration swerveAngleFXConfig = new TalonFXConfiguration();
-    public static TalonFXConfiguration swerveDriveFXConfig = new TalonFXConfiguration();
-    public static CANcoderConfiguration swerveCANcoderConfig = new CANcoderConfiguration();
+   
+    public static TalonFXConfiguration swerveDriveFXConfig;
+    public static TalonFXConfiguration swerveAngleFXConfig;
+    public static CANcoderConfiguration swerveCANcoderConfig;
 
-    public CTREConfigs(){
-        swerveCANcoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
-
-        swerveAngleFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-        swerveAngleFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-        swerveAngleFXConfig.Feedback.SensorToMechanismRatio = 26.09; // angle gear ratio
-        swerveAngleFXConfig.ClosedLoopGeneral.ContinuousWrap = true;
-        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLimit = 30;
-        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLowerLimit = 40;
-        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLowerTime = 0.1;
-        swerveAngleFXConfig.Slot0.kP = SwerveConstants.turnKP;
-        swerveAngleFXConfig.Slot0.kI = SwerveConstants.turnKI;
-        swerveAngleFXConfig.Slot0.kD = SwerveConstants.turnKD;
-
+    private CTREConfigs(){}
+        
+    public static TalonFXConfiguration getDriveConfig(){
+        swerveDriveFXConfig = new TalonFXConfiguration();
         swerveDriveFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         swerveDriveFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
         swerveDriveFXConfig.Feedback.SensorToMechanismRatio = 6.03; // drive gear ratio
@@ -47,5 +37,29 @@ public final class CTREConfigs {
         swerveDriveFXConfig.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.0;
         swerveDriveFXConfig.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.0;
         swerveDriveFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.0;
+        return swerveDriveFXConfig;
     }
+
+    public static TalonFXConfiguration getTurnConfig(){
+        swerveAngleFXConfig = new TalonFXConfiguration();
+        swerveAngleFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+        swerveAngleFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+        swerveAngleFXConfig.Feedback.SensorToMechanismRatio = 26.09; // angle gear ratio
+        swerveAngleFXConfig.ClosedLoopGeneral.ContinuousWrap = true;
+        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLimit = 30;
+        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLowerLimit = 40;
+        swerveAngleFXConfig.CurrentLimits.SupplyCurrentLowerTime = 0.1;
+        swerveAngleFXConfig.Slot0.kP = SwerveConstants.turnKP;
+        swerveAngleFXConfig.Slot0.kI = SwerveConstants.turnKI;
+        swerveAngleFXConfig.Slot0.kD = SwerveConstants.turnKD;
+        return swerveAngleFXConfig;
+    }
+
+    public static CANcoderConfiguration getCANcoderConfig(){
+        swerveCANcoderConfig = new CANcoderConfiguration();
+         swerveCANcoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+         return swerveCANcoderConfig;
+    }
+
 }
